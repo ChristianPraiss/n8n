@@ -532,6 +532,12 @@ export const schema = {
 				env: 'N8N_JWT_AUTH_HEADER',
 				doc: 'The request header containing a signed JWT',
 			},
+			jwtCookie: {
+				format: String,
+				default: '',
+				env: 'N8N_JWT_AUTH_COOKIE',
+				doc: 'The request cookie containing a signed JWT',
+			},
 			jwtHeaderValuePrefix: {
 				format: String,
 				default: '',

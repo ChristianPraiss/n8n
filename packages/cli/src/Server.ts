@@ -465,6 +465,9 @@ class Server extends AbstractServer {
 			await setupBasicAuth(this.app, config, authIgnoreRegex);
 		}
 
+		// Parse cookies for easier access
+		this.app.use(cookieParser());
+
 		// Check for and validate JWT if configured
 		if (config.getEnv('security.jwtAuth.active')) {
 			await setupExternalJWTAuth(this.app, config, authIgnoreRegex);
@@ -479,8 +482,6 @@ class Server extends AbstractServer {
 			this.app.use(...apiRouters);
 			this.frontendSettings.publicApi.latestVersion = apiLatestVersion;
 		}
-		// Parse cookies for easier access
-		this.app.use(cookieParser());
 
 		const { restEndpoint, app } = this;
 		setupPushHandler(restEndpoint, app, isUserManagementEnabled());
